@@ -1,0 +1,44 @@
+<html>
+
+	<textarea onkeyup="textKeyDown()" id="texta" rows="5" style="width:400px"></textarea><br>
+	<input type="checkbox" id="optCity" onchange="updateOutputText()">Show City</input>
+	<input type="checkbox" id="optCountry" onchange="updateOutputText()">Show Country</input>
+	<input type="checkbox" id="optBrackets" onchange="updateOutputText()">Add Brackets</input>
+	<input type="checkbox" id="optCase" onchange="updateOutputText()">Case-Insensitive</input>
+	<input type="checkbox" id="optNoairport" onchange="updateOutputText()">No airport name</input>
+	<p id="outputarea"></p>
+
+	<body>
+		<script src="web.compiled.js"></script>
+		<script>
+			var textA = document.getElementById("texta");
+			var outputA = document.getElementById("outputarea");
+			var cityCheck = document.getElementById("optCity");
+			var countryCheck = document.getElementById("optCountry");
+			var bracketsCheck = document.getElementById("optBrackets");
+			var caseCheck = document.getElementById("optCase");
+			var airportCheck = document.getElementById("optNoairport");
+
+
+			function textKeyDown(e){
+				updateOutputText();
+			}
+
+			function getOptions(){
+				return {
+					city: cityCheck.checked,
+					country: countryCheck.checked,
+					brackets: bracketsCheck.checked,
+					lowercase: caseCheck.checked,
+					noairport: airportCheck.checked
+				};
+			}
+
+			function updateOutputText(){
+				outputA.innerHTML = runOnString(textA.value, getOptions());
+			}
+		</script>
+	</body>
+
+
+</html>
